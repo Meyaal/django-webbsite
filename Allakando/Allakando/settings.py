@@ -14,10 +14,8 @@ from pathlib import Path
 import os
 import dj_database_url
 from django.contrib.messages import constants as messages
-
-# credit: CI hello django walkthrough
-if os.path.isfile('env.py'):
-    import env
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,8 +32,6 @@ SECRET_KEY = 'your-secret-key'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,6 +46,10 @@ INSTALLED_APPS = [
     'cloudinary',
     'restaurant',
 ]
+
+CLOUDINARY_STORAGE = {
+     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
+}
 
 SITE_ID = 1
 
